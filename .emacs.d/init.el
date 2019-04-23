@@ -253,3 +253,8 @@
 
 ;; delete marked text when typing
 (pending-delete-mode t)
+
+
+;; expand region, requires expand-region package
+(global-set-key (kbd "C-+") 'er/expand-region)
+(global-set-key (kbd "C--") (lambda () (interactive) (er/expand-region -1)))
