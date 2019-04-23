@@ -3,3 +3,6 @@ __pycache__/
 auto-save-list/
 ido.last
 *.signed
+*.kbx
+*.gpg
+*~
