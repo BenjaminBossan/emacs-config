@@ -18,6 +18,7 @@
  '(tempbuf-life-extension-ratio 4)
  '(tempbuf-minimum-timeout 86400)
  '(uniquify-buffer-name-style (quote forward) nil (uniquify))
+ )
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
