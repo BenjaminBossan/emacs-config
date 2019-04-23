@@ -258,3 +258,55 @@
 ;; expand region, requires expand-region package
 (global-set-key (kbd "C-+") 'er/expand-region)
 (global-set-key (kbd "C--") (lambda () (interactive) (er/expand-region -1)))
+
+
+;; IVY-SWIPER-COUNSEL STACK
+;; replaces everything search related
+;; use C-n, C-p to navigate through listed findings
+;; use M-o to show options for selection
+
+;; requires ivy
+(ivy-mode 1)
+(setq ivy-use-virtual-buffers t)
+(setq enable-recursive-minibuffers t)
+(global-set-key (kbd "C-c C-r") 'ivy-resume)
+(setq ivy-use-selectable-prompt t) ;; make file open prompt selectable, if names overlap
+;; requires swiper
+(global-set-key "\C-s" 'swiper)
+;; requires counsel
+(global-set-key (kbd "M-x") 'counsel-M-x)
+(global-set-key (kbd "C-x C-f") 'counsel-find-file)
+(global-set-key (kbd "C-c r") 'counsel-git-grep)
+;; regex fuzzy matching
+(setq ivy-re-builders-alist
+      '((t . ivy--regex-fuzzy)))
+
+;; dumb jump
+(dumb-jump-mode)
+;; prompt user for definition
+(global-set-key (kbd "C-c ,") 'dumb-jump-go-prompt)
+
+
+;; hydra, "sticky" modifier keys, requires hydra
+(defhydra hydra-move (global-map "C-ö")
+  "move like in modal editor"
+  ("p" previous-line)
+  ("n" next-line)
+  ("k" previous-line)  ;; as in vim
+  ("j" next-line)  ;; as in vim
+  ("," backward-paragraph)
+  ("." forward-paragraph)
+  ("f" forward-char)
+  ("b" backward-char)
+  ("w" forward-word)  ;; as in vim
+  ("l" backward-word)  ;; as in backward kill
+  ("W" backward-word)
+  ("a" move-beginning-of-line)
+  ("e" move-end-of-line)
+  ("v" scroll-up-command)
+  ("V" scroll-down-command)
+  ("<" beginning-of-buffer)
+  (">" end-of-buffer)
+  ("SPC" set-mark-command)
+  ("q" quit-window "quit" :color blue)
+  )
