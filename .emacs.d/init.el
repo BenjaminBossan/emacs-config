@@ -310,3 +310,18 @@
   ("SPC" set-mark-command)
   ("q" quit-window "quit" :color blue)
   )
+
+;;;;;;;;;;;;;;
+;; ORG MODE ;;
+;;;;;;;;;;;;;;
+
+;; where to find org files
+(setq org-agenda-files (list "~/Dropbox/Wohnung/Umzug/Aufgaben.org"
+                             "~/work/orga"))
+
+;; org mode TODO states
+(setq org-todo-keywords
+      '((sequence "TODO" "IN-PROGRESS" "WAITING" "DONE")))
+
+;; agenda view 1 month
+(setq org-agenda-span 'month)
