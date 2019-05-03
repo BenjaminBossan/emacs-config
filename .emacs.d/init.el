@@ -278,8 +278,8 @@
 (global-set-key (kbd "C-x C-f") 'counsel-find-file)
 (global-set-key (kbd "C-c r") 'counsel-git-grep)
 ;; regex fuzzy matching
-(setq ivy-re-builders-alist
-      '((t . ivy--regex-fuzzy)))
+;; (setq ivy-re-builders-alist
+;;       '((t . ivy--regex-fuzzy)))
 
 ;; dumb jump
 (dumb-jump-mode)
