@@ -48,9 +48,6 @@
 ;; Switch to previous buffer
 (global-set-key (kbd "C-q") 'mode-line-other-buffer)
 
-;; backwards kill word
-(global-set-key (kbd "C-l") 'backward-kill-word)
-
 ;; move forward one paragrahp
 (global-set-key (kbd "C-o") 'forward-paragraph)
 ;; move forward one paragrahp # 2
@@ -352,6 +349,18 @@
 ;;;;;;;;;;;;;;;;;;
 ;; END ORG MODE ;;
 ;;;;;;;;;;;;;;;;;;
+;; Set C-w to backward kill word if no text selected, more sane
+;; behavior IMO
+(defun my-kill-word-or-region-dwim ()
+  "If region active kill it from START to END else backward kill word."
+  ;; Don't use `(interactive "r") (start end)` since that doesn't work
+  ;; when no mark is set (e.g. in a completely new buffer).
+  (interactive)
+  (let ((start (mark)) (end (point)))
+  (if (use-region-p)
+      (kill-region start end)
+    (backward-kill-word 1))))
+(global-set-key (kbd "C-w") 'my-kill-word-or-region-dwim)
 ;; requires powerline package; adds a nice looking powerline to the bottom of emacs
 (require 'powerline)
 (powerline-default-theme)
