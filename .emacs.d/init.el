@@ -276,30 +276,41 @@
 ;; prompt user for definition
 (global-set-key (kbd "C-c ,") 'dumb-jump-go-prompt)
 
-
 ;; hydra, "sticky" modifier keys, requires hydra
 (defhydra hydra-move (global-map "C-ö")
   "move like in modal editor"
-  ("p" previous-line)
-  ("n" next-line)
+  ("p" previous-line "line u")
+  ("n" next-line "line d")
   ("k" previous-line)  ;; as in vim
   ("j" next-line)  ;; as in vim
-  ("," backward-paragraph)
-  ("." forward-paragraph)
-  ("f" forward-char)
-  ("b" backward-char)
-  ("w" forward-word)  ;; as in vim
-  ("l" backward-word)  ;; as in backward kill
-  ("W" backward-word)
-  ("a" move-beginning-of-line)
-  ("e" move-end-of-line)
-  ("v" scroll-up-command)
-  ("V" scroll-down-command)
-  ("<" beginning-of-buffer)
-  (">" end-of-buffer)
-  ("SPC" set-mark-command)
-  ("q" quit-window "quit" :color blue)
-  )
+  ("," backward-paragraph "§ u")
+  ("." forward-paragraph "§ d")
+  ("f" forward-char "char fw")
+  ("b" backward-char "char bw")
+  ("w" forward-word "word fw")  ;; as in vim
+  ("F" forward-word "word fw")
+  ("W" backward-word "word bw")
+  ("B" backward-word "word bw")
+  ("a" move-beginning-of-line "line bg")
+  ("e" move-end-of-line "line end")
+  ("v" scroll-up-command "page up")
+  ("V" scroll-down-command "page dw")
+  ("<" beginning-of-buffer "file bg")
+  (">" end-of-buffer "file end")
+  ("SPC" set-mark-command "mk")
+  ("m" set-mark-command)
+  ("c" kill-ring-save "cp")
+  ("d" kill-region "cut")
+  ("x" kill-region)
+  ("y" yank "yank")
+  ("u" undo "undo")
+  ("s" swiper "search")
+  ("r" rectangle-mark-mode "rect")
+  ("+" er/expand-region)
+  ("-" (lambda () (interactive) (er/expand-region -1)))
+  ("#" comment-dwim "comment")
+  ("q" nil "quit")
+  ("i" nil "quit"))
 
 ;;;;;;;;;;;;;;
 ;; ORG MODE ;;
