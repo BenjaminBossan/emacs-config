@@ -349,6 +349,10 @@
 ;;;;;;;;;;;;;;;;;;
 ;; END ORG MODE ;;
 ;;;;;;;;;;;;;;;;;;
+
+;; reload buffers when opening
+(desktop-save-mode 1)
+
 ;; Set C-w to backward kill word if no text selected, more sane
 ;; behavior IMO
 (defun my-kill-word-or-region-dwim ()
