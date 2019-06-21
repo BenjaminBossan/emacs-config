@@ -319,10 +319,11 @@
 ;; where to find org files
 (setq org-agenda-files (list "~/Dropbox/Wohnung/Umzug/Aufgaben.org"
                              "~/work/orga"))
+(setq org-default-notes-file "~/work/orga/notes.org")
 
 ;; org mode TODO states
 (setq org-todo-keywords
-      '((sequence "TODO" "IN-PROGRESS" "WAITING" "DONE")))
+      '((sequence "TODO" "DOING" "WAITING" "DONE")))
 
 ;; agenda view 1 month
 (setq org-agenda-span 'month)
@@ -340,6 +341,13 @@
 ;; (add-hook 'org-mode-hook #'visual-line-mode)
 ;; (add-hook 'org-mode-hook #'auto-fill-mode)
 (setq org-startup-indented t)
+
+;; when using org-refile (C-c C-w), discovers trees from all
+;; registered org files up to given level
+(setq org-refile-targets '((nil :maxlevel . 2)
+                           (org-agenda-files :maxlevel . 1)))
+;; tip: Use C-u C-c C-w to jump to the heading without moving anything
+
 
 ;;;;;;;;;;;;;;;;;;
 ;; END ORG MODE ;;
