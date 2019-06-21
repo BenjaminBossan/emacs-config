@@ -365,6 +365,19 @@
       (kill-region start end)
     (backward-kill-word 1))))
 (global-set-key (kbd "C-w") 'my-kill-word-or-region-dwim)
+
+;;;;;;;;;;;
+;; LOOKS ;;
+;;;;;;;;;;;
+
+;; add themes folder
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+;; use zenburn as default
+(load-theme 'zenburn t)
+
+;; hide scroll bar
+(scroll-bar-mode -1)
+
 ;; requires powerline package; adds a nice looking powerline to the bottom of emacs
 (require 'powerline)
 (powerline-default-theme)
