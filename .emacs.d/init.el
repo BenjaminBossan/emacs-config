@@ -142,12 +142,16 @@
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
 
+
 ;; http://www.flycheck.org/en/latest/user/installation.html
 (use-package flycheck
   :ensure t
   :init (global-flycheck-mode))
 ;;(add-hook 'after-init-hook #'global-flycheck-mode)
 (add-hook 'python-mode-hook 'flycheck-mode)
+;; https://github.com/flycheck/flycheck/issues/1437
+(setq flycheck-python-pylint-executable "python3")
+
 
 ;; Tramp
 (require 'tramp)
