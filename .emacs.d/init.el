@@ -344,3 +344,6 @@
 ;;;;;;;;;;;;;;;;;;
 ;; END ORG MODE ;;
 ;;;;;;;;;;;;;;;;;;
+;; requires powerline package; adds a nice looking powerline to the bottom of emacs
+(require 'powerline)
+(powerline-default-theme)

@@ -12,13 +12,12 @@
  '(mouse-wheel-mode t nil (mwheel))
  '(package-selected-packages
    (quote
-    (expand-region zenburn-theme use-package solarized-theme magit flycheck anaconda-mode)))
+    (powerline expand-region zenburn-theme use-package solarized-theme magit flycheck anaconda-mode)))
  '(shell-mode-hook (quote (compilation-shell-minor-mode)))
  '(show-paren-mode t nil (paren))
  '(tempbuf-life-extension-ratio 4)
  '(tempbuf-minimum-timeout 86400)
- '(uniquify-buffer-name-style (quote forward) nil (uniquify))
- )
+ '(uniquify-buffer-name-style (quote forward) nil (uniquify)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
