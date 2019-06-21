@@ -92,13 +92,6 @@
 ;; Magit https://magit.vc/manual/magit/Getting-started.html#Getting-started
 (global-set-key (kbd "C-x g") 'magit-status)
 
-;; http://orgmode.org/worg/org-tutorials/orgtutorial_dto.php
-(require 'org-install)
-(global-set-key "\C-cl" 'org-store-link)
-(global-set-key "\C-ca" 'org-agenda)
-(global-set-key "\C-cc" 'org-capture)
-(global-set-key "\C-cb" 'org-iswitchb)
-
 ;; Misc customization
 (tool-bar-mode -1)
 (setq frame-title-format "%b - Emacs")
@@ -183,13 +176,6 @@
 
 ;; Open Matlab files in octave-mode
 (add-to-list 'auto-mode-alist '("\\.m$" . octave-mode))
-
-;; http://orgmode.org/worg/org-tutorials/orgtutorial_dto.php
-(require 'org-install)
-(setq org-log-done t)
-;; (add-hook 'org-mode-hook #'visual-line-mode)
-;; (add-hook 'org-mode-hook #'auto-fill-mode)
-(setq org-startup-indented t)
 
 (if (file-exists-p "~/.emacs.d/desktop.el")
     (load "~/.emacs.d/desktop"))
@@ -325,3 +311,21 @@
 
 ;; agenda view 1 month
 (setq org-agenda-span 'month)
+
+;; http://orgmode.org/worg/org-tutorials/orgtutorial_dto.php
+(require 'org-install)
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-cc" 'org-capture)
+(global-set-key "\C-cb" 'org-iswitchb)
+
+;; http://orgmode.org/worg/org-tutorials/orgtutorial_dto.php
+(require 'org-install)
+(setq org-log-done t)
+;; (add-hook 'org-mode-hook #'visual-line-mode)
+;; (add-hook 'org-mode-hook #'auto-fill-mode)
+(setq org-startup-indented t)
+
+;;;;;;;;;;;;;;;;;;
+;; END ORG MODE ;;
+;;;;;;;;;;;;;;;;;;
