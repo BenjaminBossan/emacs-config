@@ -381,3 +381,6 @@
 ;; requires powerline package; adds a nice looking powerline to the bottom of emacs
 (require 'powerline)
 (powerline-default-theme)
+
+;; requires pyvenv; use pyvenv-workon to choose python env
+(setenv "WORKON_HOME" "~/anaconda3/envs/")
