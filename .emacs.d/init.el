@@ -147,7 +147,7 @@
 ;;(add-hook 'after-init-hook #'global-flycheck-mode)
 (add-hook 'python-mode-hook 'flycheck-mode)
 ;; https://github.com/flycheck/flycheck/issues/1437
-(setq flycheck-python-pylint-executable "python3")
+(setq flycheck-python-pylint-executable "pylint")
 
 
 ;; Tramp
