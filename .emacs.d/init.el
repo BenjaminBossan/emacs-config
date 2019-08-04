@@ -306,6 +306,8 @@
   ("+" er/expand-region)
   ("-" (lambda () (interactive) (er/expand-region -1)))
   ("#" comment-dwim "comment")
+  ("<up>" move-line-up "line up")
+  ("<down>" move-line-down "line down")
   ("q" nil "quit")
   ("i" nil "quit"))
 
