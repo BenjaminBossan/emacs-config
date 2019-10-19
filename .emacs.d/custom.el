@@ -3,6 +3,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("cdb4ffdecc682978da78700a461cdc77456c3a6df1c1803ae2dd55c59fa703e3" default)))
  '(grep-find-command
    "find -L . -not -path \"*.svn*\" -not -path \"*.pt.py\" -not -path \"*compressed*\" -type f -print0 | xargs -0 -e grep -n -e ")
  '(initial-frame-alist (quote ((fullscreen . maximized))))
