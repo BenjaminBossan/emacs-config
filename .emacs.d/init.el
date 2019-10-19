@@ -148,6 +148,8 @@
 (add-hook 'python-mode-hook 'flycheck-mode)
 ;; https://github.com/flycheck/flycheck/issues/1437
 (setq flycheck-python-pylint-executable "pylint")
+;; use "pylintrc" instead of ".pylintrc" for config file
+(setq flycheck-pylintrc "pylintrc")
 
 
 ;; Tramp
@@ -268,11 +270,6 @@
 ;; (setq ivy-re-builders-alist
 ;;       '((t . ivy--regex-fuzzy)))
 
-;; dumb jump
-(dumb-jump-mode)
-;; prompt user for definition
-(global-set-key (kbd "C-c ,") 'dumb-jump-go-prompt)
-
 ;; hydra, "sticky" modifier keys, requires hydra
 (defhydra hydra-move (global-map "C-ö")
   "move like in modal editor"
@@ -386,3 +383,42 @@
 
 ;; requires pyvenv; use pyvenv-workon to choose python env
 (setenv "WORKON_HOME" "~/anaconda3/envs/")
+
+
+;; trigger text completion, easier to call and repeat on German keyboard than "M-/"
+;; (global-set-key (kbd "S-<tab>") 'dabbrev-expand)
+;; in some modes, it seems that "S-<tab>" is automatically translated to <backtab>
+;; (global-set-key (kbd "<backtab>") 'dabbrev-expand)
+;; override "<backtab>" in Python mode, which has its own command
+;; (define-key python-mode-map (kbd "<backtab>") nil)
+
+;; highlight cursor, requires beacon.el (https://github.com/Malabarba/beacon)
+(beacon-mode 1)
+
+;; CRUX commands, requires crux package
+
+;; smart move to beginning of line: first indented, then very start, then toggle
+(global-set-key (kbd "C-a") 'crux-move-beginning-of-line)
+;; override C-a in org mode, which has its own command
+;; (define-key org-mode-map (kbd "C-a") nil)
+
+;; First kill to end of line, then kill the whole line
+(global-set-key (kbd "C-k") 'crux-smart-kill-line)
+;; override C-k in org mode, which has its own command
+;; (define-key org-mode-map (kbd "C-k") nil)
+
+
+;; google marked region or prompt
+;; https://batsov.com/articles/2011/11/19/why-emacs/
+(defun my-invoke-google ()
+  "Googles a query or region if any."
+  (interactive)
+  (browse-url
+   (concat
+    "http://www.google.com/search?ie=utf-8&oe=utf-8&q="
+    (if mark-active
+        (buffer-substring (region-beginning) (region-end))
+      (read-string "Google: ")))))
+(global-set-key (kbd "C-c C-g") 'my-invoke-google)
+
+(require 'org-re-reveal)
