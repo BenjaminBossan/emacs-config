@@ -266,9 +266,22 @@
 (global-set-key (kbd "M-x") 'counsel-M-x)
 (global-set-key (kbd "C-x C-f") 'counsel-find-file)
 (global-set-key (kbd "C-c r") 'counsel-git-grep)
+(global-set-key (kbd "C-c C-o") 'ivy-occur)
 ;; regex fuzzy matching
 ;; (setq ivy-re-builders-alist
 ;;       '((t . ivy--regex-fuzzy)))
+
+;; requires wgrep package
+;; makes grep results editable
+
+;; E.g., if you have ivy candidates, press C-c C-o (ivy-occur) to
+;; bring them to their own buffer, then C-x C-q (or just "e")
+;; (ivy-wgrep-change-to-wgrep-mode) to make the buffer editable, then
+;; C-c C-c to apply the changes. This can be used, for instance, to
+;; rename a variable in a whole folder with counsel-get-grep.
+(require 'wgrep)
+(add-hook 'ivy-occur-grep-mode-hook
+          (lambda () (local-set-key (kbd "e") #'ivy-wgrep-change-to-wgrep-mode)))
 
 ;; hydra, "sticky" modifier keys, requires hydra
 (defhydra hydra-move (global-map "C-ö")
@@ -384,14 +397,6 @@
 ;; requires pyvenv; use pyvenv-workon to choose python env
 (setenv "WORKON_HOME" "~/anaconda3/envs/")
 
-
-;; trigger text completion, easier to call and repeat on German keyboard than "M-/"
-;; (global-set-key (kbd "S-<tab>") 'dabbrev-expand)
-;; in some modes, it seems that "S-<tab>" is automatically translated to <backtab>
-;; (global-set-key (kbd "<backtab>") 'dabbrev-expand)
-;; override "<backtab>" in Python mode, which has its own command
-;; (define-key python-mode-map (kbd "<backtab>") nil)
-
 ;; highlight cursor, requires beacon.el (https://github.com/Malabarba/beacon)
 (beacon-mode 1)
 
@@ -422,3 +427,5 @@
 (global-set-key (kbd "C-c C-g") 'my-invoke-google)
 
 (require 'org-re-reveal)
+
+(global-set-key (kbd "<S-SPC>") 'dabbrev-completion)
