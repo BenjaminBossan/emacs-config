@@ -428,4 +428,4 @@
 
 (require 'org-re-reveal)
 
-(global-set-key (kbd "<S-SPC>") 'dabbrev-completion)
+(global-set-key (kbd "<S-SPC>") 'dabbrev-expand)
