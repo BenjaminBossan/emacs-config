@@ -298,7 +298,7 @@
   ("F" forward-word "word fw")
   ("W" backward-word "word bw")
   ("B" backward-word "word bw")
-  ("a" move-beginning-of-line "line bg")
+  ("a" my-beginning-of-line-or-prev-line-dwim "line bg")
   ("e" my-end-of-line-or-next-line-dwim "line end")
   ("v" scroll-up-command "page up")
   ("V" scroll-down-command "page dw")
@@ -390,6 +390,17 @@
       (move-end-of-line 2)
     (move-end-of-line 1)))
 (global-set-key (kbd "C-e") 'my-end-of-line-or-next-line-dwim)
+
+;; Set C-a to go to the beginning of the line or, when already at the
+;; beginning, to the beginning of the previous line
+(defun my-beginning-of-line-or-prev-line-dwim ()
+  "Move to BOL; if already BOL, move prev line and BOL."
+  (interactive)
+  (if
+      (eq (line-beginning-position) (point))
+      (move-beginning-of-line 0)
+    (move-beginning-of-line nil)))
+(global-set-key (kbd "C-a") 'my-beginning-of-line-or-prev-line-dwim)
 
 
 ;;;;;;;;;;;
