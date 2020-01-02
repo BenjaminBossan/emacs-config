@@ -378,6 +378,18 @@
     (backward-kill-word 1))))
 (global-set-key (kbd "C-w") 'my-kill-word-or-region-dwim)
 
+;; Set C-e to go to the end of the line or, when already at the end,
+;; to the end of the next line
+(defun my-end-of-line-or-next-line-dwim ()
+  "Move to EOL; if already EOL, move next line and EOL."
+  (interactive)
+  (if
+      (eq (line-end-position) (point))
+      (move-end-of-line 2)
+    (move-end-of-line 1)))
+(global-set-key (kbd "C-e") 'my-end-of-line-or-next-line-dwim)
+
+
 ;;;;;;;;;;;
 ;; LOOKS ;;
 ;;;;;;;;;;;
