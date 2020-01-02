@@ -48,8 +48,9 @@
 ;; Switch to previous buffer
 (global-set-key (kbd "C-q") 'mode-line-other-buffer)
 
-;; move forward one paragrahp
-(global-set-key (kbd "C-o") 'forward-paragraph)
+;; move to other window, more ergonomic than "C-x o"
+(global-set-key (kbd "C-o") 'other-window)
+
 ;; move forward one paragrahp # 2
 (global-set-key (kbd "C-.") 'forward-paragraph)
 ;; move backward one paragrahp
