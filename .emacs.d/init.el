@@ -324,6 +324,25 @@
   ("q" nil "quit")
   ("i" nil "quit"))
 
+
+
+;; hydra for flycheck, see https://github.com/abo-abo/hydra/wiki/Flycheck
+(defhydra hydra-flycheck
+    (:pre (flycheck-list-errors)
+     :post (quit-windows-on "*Flycheck errors*")
+     :hint nil)
+  "Errors"
+  ("f" flycheck-error-list-set-filter "Filter")
+  ("j" flycheck-next-error "next")
+  ("n" flycheck-next-error "next")
+  ("k" flycheck-previous-error "prev")
+  ("p" flycheck-previous-error "prev")
+  ("g" flycheck-first-error "First")
+  ("G" (progn (goto-char (point-max)) (flycheck-previous-error)) "Last")
+  ("q" nil))
+
+;; Run "C-c ! !" to go to the first flycheck error and start the hydra
+(global-set-key (kbd "C-c ! !") 'hydra-flycheck/flycheck-next-error)
 ;;;;;;;;;;;;;;
 ;; ORG MODE ;;
 ;;;;;;;;;;;;;;
