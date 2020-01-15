@@ -308,7 +308,7 @@
   ("C-SPC" set-mark-command "mk")
   ("m" set-mark-command)
   ("c" kill-ring-save "cp")
-  ("d" kill-region "cut")
+  ("d" my-cut-or-delete-dwim "cut")
   ("x" kill-region)
   ("y" yank "yank")
   ("u" undo "undo")
@@ -405,6 +405,7 @@
 
 ;; Run "C-c ! !" to go to the first flycheck error and start the hydra
 (global-set-key (kbd "C-c ! !") 'hydra-flycheck/flycheck-next-error)
+
 ;;;;;;;;;;;;;;
 ;; ORG MODE ;;
 ;;;;;;;;;;;;;;
@@ -461,6 +462,19 @@
       (kill-region start end)
     (backward-kill-word 1))))
 (global-set-key (kbd "C-w") 'my-kill-word-or-region-dwim)
+
+(defun my-cut-or-delete-dwim (&optional arg)
+  "If region active kill it from start to end else kill ARG words (default=1)."
+  ;; Don't use `(interactive "r") (start end)` since that doesn't work
+  ;; when no mark is set (e.g. in a completely new buffer). This
+  ;; command is not attached to a keybinding but is used during the
+  ;; move hydra to somewhat emulate vim's delete word.
+  (interactive "p")
+  (or arg (setq arg 1))
+  (let ((start (mark)) (end (point)))
+    (if (use-region-p)
+        (kill-region start end)
+      (kill-word arg))))
 
 ;; Set C-e to go to the end of the line or, when already at the end,
 ;; to the end of the next line
