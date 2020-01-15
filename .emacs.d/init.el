@@ -305,7 +305,7 @@
   ("V" scroll-down-command "page dw")
   ("<" beginning-of-buffer "file bg")
   (">" end-of-buffer "file end")
-  ("SPC" set-mark-command "mk")
+  ("C-SPC" set-mark-command "mk")
   ("m" set-mark-command)
   ("c" kill-ring-save "cp")
   ("d" kill-region "cut")
@@ -324,6 +324,68 @@
   ("q" nil "quit")
   ("i" nil "quit"))
 
+;; The most common move commands now activate hydra-move; e.g., when
+;; pressing C-n to move to the next line, hydra-move is activated, so
+;; that just pressing n will move one line further. That means that
+;; for instance pressing C-n n n moves 3 lines forward, C-p b moves
+;; back one line and one character, etc. The reasoning behind this is
+;; that often I don't bother to activate the move hydra (C-ö) because
+;; the first command doesn't do anything, making it less
+;; economical. However, I often want to move more than, say, one word
+;; forward, so I would like to activate the move hydra nonetheless.
+
+(defun my-next-line-hydra ()
+  "Move next line and activate move hydra."
+  (interactive)
+  (hydra-move/next-line))
+(global-set-key (kbd "C-n") 'my-next-line-hydra)
+;; (define-key minibuffer-local-map "C-n" [next-line])
+;; de-activate in ivy-minibuffer
+(define-key ivy-minibuffer-map (kbd "C-n") #'ivy-next-line)
+
+(defun my-prev-line-hydra ()
+  "Move prev line and activate move hydra."
+  (interactive)
+  (hydra-move/previous-line))
+(global-set-key (kbd "C-p") 'my-prev-line-hydra)
+;; de-activate in ivy-minibuffer
+(define-key ivy-minibuffer-map (kbd "C-p") #'ivy-previous-line)
+
+(defun my-forward-char-hydra ()
+  "Move forward char and activate move hydra."
+  (interactive)
+  (hydra-move/forward-char))
+(global-set-key (kbd "C-f") 'my-forward-char-hydra)
+
+(defun my-backward-char-hydra ()
+  "Move backward char and activate move hydra."
+  (interactive)
+  (hydra-move/backward-char))
+(global-set-key (kbd "C-b") 'my-backward-char-hydra)
+
+(defun my-forward-word-hydra ()
+  "Move forward word and activate move hydra."
+  (interactive)
+  (hydra-move/forward-word))
+(global-set-key (kbd "M-f") 'my-forward-word-hydra)
+
+(defun my-backward-word-hydra ()
+  "Move backward word  and activate move hydra."
+  (interactive)
+  (hydra-move/backward-word))
+(global-set-key (kbd "M-b") 'my-backward-word-hydra)
+
+(defun my-forward-paragraph-hydra ()
+  "Move forward paragraph and activate move hydra."
+  (interactive)
+  (hydra-move/forward-paragraph))
+(global-set-key (kbd "C-.") 'my-forward-paragraph-hydra)
+
+(defun my-backward-paragraph-hydra ()
+  "Move backward paragraph and activate move hydra."
+  (interactive)
+  (hydra-move/backward-paragraph))
+(global-set-key (kbd "C-,") 'my-backward-paragraph-hydra)
 
 
 ;; hydra for flycheck, see https://github.com/abo-abo/hydra/wiki/Flycheck
