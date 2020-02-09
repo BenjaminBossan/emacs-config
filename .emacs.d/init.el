@@ -309,6 +309,7 @@
   ("m" set-mark-command)
   ("c" kill-ring-save "cp")
   ("d" my-cut-or-delete-dwim "cut")
+  ("D" backward-kill-word "bk kill word")
   ("x" kill-region)
   ("y" yank "yank")
   ("u" undo "undo")
@@ -550,3 +551,18 @@
 (require 'org-re-reveal)
 
 (global-set-key (kbd "<S-SPC>") 'dabbrev-expand)
+
+
+(defun my-replace-newline-region ()
+  "Replace every newline in a region with a whitespace.
+
+Basically undoes FILL-PARAGRAPH"
+  (interactive)
+  (progn
+    (replace-string "
+
+" "XxXxX")
+   (replace-string "
+" " ")
+   (replace-string "XxXxX" "fooooooooooo")
+   (replace-string "b" "a")))
