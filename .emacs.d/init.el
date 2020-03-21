@@ -553,16 +553,15 @@
 (global-set-key (kbd "<S-SPC>") 'dabbrev-expand)
 
 
-(defun my-replace-newline-region ()
-  "Replace every newline in a region with a whitespace.
-
-Basically undoes FILL-PARAGRAPH"
+(defun my-switch-shell-run-last-cmd ()
+  "Switch to shell buffer and run last cmd."
   (interactive)
-  (progn
-    (replace-string "
-
-" "XxXxX")
-   (replace-string "
-" " ")
-   (replace-string "XxXxX" "fooooooooooo")
-   (replace-string "b" "a")))
+  (let ((bname (buffer-name)))
+    (if (not (string= bname "*shell*"))
+        (other-window 1))
+    (switch-to-buffer "*shell*")
+    (comint-previous-input 1)
+    (comint-send-input)
+    (if (not (string= bname "*shell*"))
+        (other-window 1))))
+(global-set-key (kbd "C-S-o") 'my-switch-shell-run-last-cmd)
