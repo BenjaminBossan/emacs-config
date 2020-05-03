@@ -579,6 +579,7 @@
     (if (not (string= bname "*shell*"))
         (other-window 1))
     (switch-to-buffer "*shell*")
+    (end-of-buffer)
     (comint-previous-input 1)
     (comint-send-input)
     (if (not (string= bname "*shell*"))
