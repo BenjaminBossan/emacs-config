@@ -56,6 +56,21 @@
 ;; move backward one paragrahp
 (global-set-key (kbd "C-,") 'backward-paragraph)
 
+;; special movement for programming modes
+(defun my-backw-paragraph-or-fun-start ()
+  "Beginning of paragraph or def if Python mode."
+  (interactive)
+  (if (equal major-mode 'python-mode)
+      (beginning-of-python-def-or-class)
+    (backward-paragraph)))
+
+(defun my-forw-paragraph-or-fun-end ()
+  "End of paragraph or def if Python mode."
+  (interactive)
+  (if (equal major-mode 'python-mode)
+      (end-of-python-def-or-class)
+    (forward-paragraph)))
+
 ;; indent text block left and right
 (global-set-key (kbd "M-<left>") 'python-indent-shift-left)
 (global-set-key (kbd "M-<right>") 'python-indent-shift-right)
@@ -293,6 +308,8 @@
   ("j" next-line)  ;; as in vim
   ("," backward-paragraph "§ u")
   ("." forward-paragraph "§ d")
+  (";" my-backw-paragraph-or-fun-start "§ u")
+  (":" my-forw-paragraph-or-fun-end "§ d")
   ("f" forward-char "char fw")
   ("b" backward-char "char bw")
   ("w" forward-word "word fw")  ;; as in vim
@@ -381,12 +398,14 @@
   (interactive)
   (hydra-move/forward-paragraph))
 (global-set-key (kbd "C-.") 'my-forward-paragraph-hydra)
+(global-set-key (kbd "C-:") 'hydra-move/my-forw-paragraph-or-fun-end)
 
 (defun my-backward-paragraph-hydra ()
   "Move backward paragraph and activate move hydra."
   (interactive)
   (hydra-move/backward-paragraph))
 (global-set-key (kbd "C-,") 'my-backward-paragraph-hydra)
+(global-set-key (kbd "C-;") 'hydra-move/my-backw-paragraph-or-fun-start)
 
 
 ;; hydra for flycheck, see https://github.com/abo-abo/hydra/wiki/Flycheck
